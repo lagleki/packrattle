@@ -98,7 +98,7 @@ export default class Engine {
 
     // start the engine!
     while (Object.keys(this.unresolvedStates).length > 0) {
-      while (!this.workQueue.isEmpty && successes.length == 0 && !this.currentException) {
+      while (!this.workQueue.isEmpty && !this.currentException) {
         const { state, results } = this.workQueue.get();
 
         this.ticks++;
