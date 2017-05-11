@@ -189,12 +189,14 @@ class Parser {
   // consume an entire text with this parser. convert failure into an exception.
   run(text, options = {}) {
     const rv = this.consume().execute(text, options);
-    if (!rv.ok) {
-      const error = new Error(rv.value);
-      error.span = rv.state.span();
-      throw error;
+    for (const i of rv){
+      if (!i || !i.ok) {
+        const error = new Error(i.value);
+        error.span = i.state.span();
+        throw error;
+      }
     }
-    return rv.value;
+    return rv.map(i=>i.value);
   }
 
   // ----- transforms
