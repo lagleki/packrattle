@@ -131,7 +131,7 @@ export default class Engine {
 
     if (this.dotfile) this.dotfile(this.debugGraph.toDot());
 
-    return successes.length > 0 ? successes[0] : failures[0];
+    return successes.length > 0 ? successes : failures[0];
   }
 
   /*
